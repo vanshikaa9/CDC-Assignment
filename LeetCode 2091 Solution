@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+
+class Solution
+{
+    public int minimumDeletions(int[] a){
+        int n=a.length,x=0,y=0;
+        for(int i=1;i<n;i++){
+            if(a[i]<a[x])x=i;
+            if(a[i]>a[y])y=i;
+ }
+        int l=Math.min(x,y),r=Math.max(x,y);
+        int p=r+1,q=n-l,s=l+1+n-r;
+        int m;
+        if(p<q)m=p;else m=q;
+        if(s<m)m=s;
+        return m;
+    }
+}
