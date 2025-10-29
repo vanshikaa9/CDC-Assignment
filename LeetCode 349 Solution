@@ -1,0 +1,25 @@
+//SOLUTION 1
+
+class Solution {
+    public int[] intersection(int[] a, int[] b) {
+        int[] t=new int[a.length];
+        int k=0;
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<b.length;j++){
+                if(a[i]==b[j]){
+                    int f=0;
+                    for(int x=0;x<k;x++){
+                        if(t[x]==a[i]) f=1;
+                    }
+                    if(f==0) t[k++]=a[i];
+                    break;
+                }
+            }
+        }
+        int[] res=new int[k];
+        for(int i=0;i<k;i++)
+         res[i]=t[i];
+
+        return res;
+    }
+}
