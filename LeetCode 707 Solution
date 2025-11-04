@@ -1,0 +1,50 @@
+//Solution 1
+
+class MyLinkedList {
+    class N{
+        int v; N n;
+        N(int v){this.v=v;}
+    }
+    N h;
+    int s;
+
+    public int get(int i) {
+        if(i<0||i>=s) return -1;
+        N c=h;
+        while(i-->0) c=c.n;
+        return c.v;
+    }
+
+    public void addAtHead(int v) {
+        N x=new N(v);
+        x.n=h; h=x;
+        s++;
+    }
+
+    public void addAtTail(int v) {
+        if(s==0){ addAtHead(v); return; }
+        N c=h;
+        while(c.n!=null) c=c.n;
+        c.n=new N(v);
+        s++;
+    }
+
+    public void addAtIndex(int i, int v) {
+        if(i> s) return;
+        if(i<=0){ addAtHead(v); return; }
+        N c=h;
+        while(--i>0) c=c.n;
+        N x=new N(v);
+        x.n=c.n; c.n=x;
+        s++;
+    }
+
+    public void deleteAtIndex(int i) {
+        if(i<0||i>=s) return;
+        if(i==0){ h=h.n; s--; return; }
+        N c=h;
+        while(--i>0) c=c.n;
+        c.n=c.n.n;
+        s--;
+    }
+}
