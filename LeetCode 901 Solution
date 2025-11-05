@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+class StockSpanner {
+    int[] p=new int[100000];
+    int[] s=new int[100000];
+    int n=0;
+    public StockSpanner() {}
+    public int next(int price) {
+        p[n]=price;
+        int x=1,i=n-1;
+        while(i>=0&&p[i]<=price){
+            x+=s[i];
+            i-=s[i];
+        }
+        s[n]=x;
+        n++;
+        return x;
+    }
+}
