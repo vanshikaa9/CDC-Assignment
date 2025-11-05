@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+class MyQueue {
+    int[] a=new int[100000];
+    int f=0,r=0;
+    public MyQueue() {}
+    public void push(int x) {
+        a[r++]=x;
+    }
+    public int pop() {
+        return a[f++];
+    }
+    public int peek() {
+        return a[f];
+    }
+    public boolean empty() {
+        return f==r;
+    }
+}
