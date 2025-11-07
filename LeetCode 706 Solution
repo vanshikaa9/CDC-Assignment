@@ -1,0 +1,18 @@
+//SOLUTION 1
+
+class MyHashMap {
+    int[] a;
+    public MyHashMap() {
+        a = new int[1000001];
+        Arrays.fill(a, -1);
+    }
+    public void put(int k, int v) {
+        a[k] = v;
+    }
+    public int get(int k) {
+        return a[k];
+    }
+    public void remove(int k) {
+        a[k] = -1;
+    }
+}
