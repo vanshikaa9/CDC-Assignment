@@ -1,0 +1,10 @@
+//SOLUTION 1
+
+class Solution {
+    public int missingNumber(int[] a) {
+        int n = a.length;
+        int s = n * (n + 1) / 2;
+        for (int x : a) s -= x;
+        return s;
+    }
+}
