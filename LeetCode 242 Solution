@@ -1,0 +1,25 @@
+//SOLUTION 1
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] a = new int[26];
+        int[] b = new int[26];
+        String z = "abcdefghijklmnopqrstuvwxyz";
+
+        for (int i = 0; i < s.length(); i++) {
+            char x = s.charAt(i);
+            char y = t.charAt(i);
+            for (int j = 0; j < 26; j++) {
+                if (z.charAt(j) == x) a[j]++;
+                if (z.charAt(j) == y) b[j]++;
+            }
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (a[i] != b[i]) return false;
+        }
+
+        return true;
+    }
+}
