@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+class Solution {
+    int mod = 1337;
+    public int superPow(int a, int[] b) {
+        int r = 1;
+        for (int x : b)
+            r = pow(r, 10) * pow(a, x) % mod;
+        return r;
+    }
+
+    int pow(int a, int b) {
+        int r = 1;
+        a %= mod;
+        while (b-- > 0)
+            r = r * a % mod;
+        return r;
+    }
+}
