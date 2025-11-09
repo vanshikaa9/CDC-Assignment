@@ -1,0 +1,26 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    public int[] topKFrequent(int[] a, int k) {
+        Arrays.sort(a);
+        List<int[]> b = new ArrayList<>();
+        int n = a.length, c = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (a[i] == a[i - 1]) c++;
+            else {
+                b.add(new int[]{a[i - 1], c});
+                c = 1;
+            }
+        }
+        b.add(new int[]{a[n - 1], c});
+
+        Collections.sort(b, (x, y) -> y[1] - x[1]);
+
+        int[] ans = new int[k];
+        for (int i = 0; i < k; i++) ans[i] = b.get(i)[0];
+        return ans;
+    }
+}
