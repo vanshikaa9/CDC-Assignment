@@ -1,0 +1,20 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    List<List<Integer>> r = new ArrayList<>();
+    public List<List<Integer>> permute(int[] a) {
+        back(a, new ArrayList<>(), new boolean[a.length]);
+        return r;
+    }
+    void back(int[] a, List<Integer> t, boolean[] u) {
+        if (t.size() == a.length) { r.add(new ArrayList<>(t)); return; }
+        for (int i = 0; i < a.length; i++) {
+            if (u[i]) continue;
+            u[i] = true; t.add(a[i]);
+            back(a, t, u);
+            t.remove(t.size()-1); u[i] = false;
+        }
+    }
+}
