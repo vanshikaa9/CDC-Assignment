@@ -1,0 +1,21 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    boolean f(String s, int i, List<String> w, Boolean[] dp) {
+        if (i == s.length()) return true;
+        if (dp[i] != null) return dp[i];
+        for (int j = 0; j < w.size(); j++) {
+            String a = w.get(j);
+            int n = a.length();
+            if (i + n <= s.length() && s.substring(i, i + n).equals(a))
+                if (f(s, i + n, w, dp)) return dp[i] = true;
+        }
+        return dp[i] = false;
+    }
+
+    public boolean wordBreak(String s, List<String> w) {
+        return f(s, 0, w, new Boolean[s.length()]);
+    }
+}
