@@ -1,0 +1,25 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget(int[][] g) {
+        List<List<Integer>> r = new ArrayList<>();
+        List<Integer> p = new ArrayList<>();
+        p.add(0);
+        f(g, 0, p, r);
+        return r;
+    }
+
+    void f(int[][] g, int u, List<Integer> p, List<List<Integer>> r) {
+        if (u == g.length - 1) {
+            r.add(new ArrayList<>(p));
+            return;
+        }
+        for (int v : g[u]) {
+            p.add(v);
+            f(g, v, p, r);
+            p.remove(p.size() - 1);
+        }
+    }
+}
