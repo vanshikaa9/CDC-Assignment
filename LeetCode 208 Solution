@@ -1,0 +1,36 @@
+//SOLUTION 1
+
+class Trie {
+    Trie[] c = new Trie[26];
+    boolean end;
+
+    public void insert(String w) {
+        Trie t = this;
+        for (int i = 0; i < w.length(); i++) {
+            int x = w.charAt(i) - 'a';
+            if (t.c[x] == null) t.c[x] = new Trie();
+            t = t.c[x];
+        }
+        t.end = true;
+    }
+
+    public boolean search(String w) {
+        Trie t = this;
+        for (int i = 0; i < w.length(); i++) {
+            int x = w.charAt(i) - 'a';
+            if (t.c[x] == null) return false;
+            t = t.c[x];
+        }
+        return t.end;
+    }
+
+    public boolean startsWith(String p) {
+        Trie t = this;
+        for (int i = 0; i < p.length(); i++) {
+            int x = p.charAt(i) - 'a';
+            if (t.c[x] == null) return false;
+            t = t.c[x];
+        }
+        return true;
+    }
+}
