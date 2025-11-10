@@ -1,0 +1,31 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> r = new ArrayList<>();
+        char[][] b = new char[n][n];
+        for (int i = 0; i < n; i++) Arrays.fill(b[i], '.');
+        boolean[] c = new boolean[n], d1 = new boolean[2 * n], d2 = new boolean[2 * n];
+        f(0, n, b, c, d1, d2, r);
+        return r;
+    }
+
+    void f(int i, int n, char[][] b, boolean[] c, boolean[] d1, boolean[] d2, List<List<String>> r) {
+        if (i == n) {
+            List<String> t = new ArrayList<>();
+            for (int k = 0; k < n; k++) t.add(new String(b[k]));
+            r.add(t);
+            return;
+        }
+        for (int j = 0; j < n; j++) {
+            int x = i + j, y = i - j + n;
+            if (!c[j] && !d1[x] && !d2[y]) {
+                b[i][j] = 'Q'; c[j] = d1[x] = d2[y] = true;
+                f(i + 1, n, b, c, d1, d2, r);
+                b[i][j] = '.'; c[j] = d1[x] = d2[y] = false;
+            }
+        }
+    }
+}
