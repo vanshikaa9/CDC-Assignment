@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+class Solution {
+    public int[][] floodFill(int[][] g, int sr, int sc, int c) {
+        int n = g.length, m = g[0].length, old = g[sr][sc];
+        if (old == c) return g;
+        dfs(g, sr, sc, old, c, n, m);
+        return g;
+    }
+
+    void dfs(int[][] g, int i, int j, int old, int c, int n, int m) {
+        if (i < 0 || j < 0 || i >= n || j >= m || g[i][j] != old) return;
+        g[i][j] = c;
+        dfs(g, i + 1, j, old, c, n, m);
+        dfs(g, i - 1, j, old, c, n, m);
+        dfs(g, i, j + 1, old, c, n, m);
+        dfs(g, i, j - 1, old, c, n, m);
+    }
+}
