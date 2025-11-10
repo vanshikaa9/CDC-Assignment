@@ -1,0 +1,19 @@
+//SOLUTION 1
+
+class Solution {
+    public int rob(int[] a) {
+        int n = a.length;
+        if (n == 1) return a[0];
+        return Math.max(run(a, 0, n - 2), run(a, 1, n - 1));
+    }
+
+    int run(int[] a, int l, int r) {
+        int p = 0, c = 0;
+        for (int i = l; i <= r; i++) {
+            int t = Math.max(c, p + a[i]);
+            p = c;
+            c = t;
+        }
+        return c;
+    }
+}
