@@ -1,0 +1,25 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> r = new ArrayList<>();
+        int[] a = new int[k];
+        f(1, 0, n, k, a, r);
+        return r;
+    }
+
+    void f(int s, int i, int n, int k, int[] a, List<List<Integer>> r) {
+        if (i == k) {
+            List<Integer> t = new ArrayList<>();
+            for (int x : a) t.add(x);
+            r.add(t);
+            return;
+        }
+        for (int j = s; j <= n; j++) {
+            a[i] = j;
+            f(j + 1, i + 1, n, k, a, r);
+        }
+    }
+}
