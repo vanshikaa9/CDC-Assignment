@@ -1,0 +1,16 @@
+//SOLUTION 1
+
+class Solution {
+    public int rob(int[] a) {
+        int n = a.length;
+        if (n == 0) return 0;
+        if (n == 1) return a[0];
+        int p = a[0], c = Math.max(a[0], a[1]);
+        for (int i = 2; i < n; i++) {
+            int t = Math.max(c, p + a[i]);
+            p = c;
+            c = t;
+        }
+        return c;
+    }
+}
