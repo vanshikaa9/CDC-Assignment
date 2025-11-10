@@ -1,0 +1,16 @@
+//SOLUTION 1 
+
+class Solution {
+    public int findTargetSumWays(int[] a, int t) {
+        int s = 0;
+        for (int x : a) s += x;
+        if (s < Math.abs(t) || (s + t) % 2 != 0) return 0;
+        int p = (s + t) / 2;
+        int[] dp = new int[p + 1];
+        dp[0] = 1;
+        for (int x : a)
+            for (int j = p; j >= x; j--)
+                dp[j] += dp[j - x];
+        return dp[p];
+    }
+}
