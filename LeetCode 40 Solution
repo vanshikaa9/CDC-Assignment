@@ -1,0 +1,27 @@
+//SOLUTION 1
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] a, int t) {
+        List<List<Integer>> r = new ArrayList<>();
+        Arrays.sort(a);
+        f(a, t, 0, new ArrayList<>(), r);
+        return r;
+    }
+
+    void f(int[] a, int t, int i, List<Integer> c, List<List<Integer>> r) {
+        if (t == 0) {
+            r.add(new ArrayList<>(c));
+            return;
+        }
+        for (int j = i; j < a.length && a[j] <= t; j++) {
+            if (j > i && a[j] == a[j - 1]) continue;
+            c.add(a[j]);
+            f(a, t - a[j], j + 1, c, r);
+            c.remove(c.size() - 1);
+        }
+    }
+}
+
+
